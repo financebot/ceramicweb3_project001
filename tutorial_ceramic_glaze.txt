@@ -1,0 +1,629 @@
+#startfile
+#ceramictutorial1
+
+Last update 20220810. 
+Rationale. This tutorial about ceramic and glaze are a list of examples.
+
+
+
+#introduction.
+#This commands was testend inside doker ubuntu, with a bash shell.
+
+
+new example. get npm paths
+#can be useful to know these paths.
+
+which npm 
+#output: /usr/local/bin/npm
+
+
+which node 
+#output: #/usr/local/bin/node
+
+
+
+npm config get prefix 
+#output: /root/.npm-global
+
+
+
+
+
+new example: install globally @ceramicnetwork/cli , and run ceramic daemon
+tags: #global #ceramicglobal #ceramicdaemon
+see too: https://blog.ceramic.network/building-with-clay-getting-started-with-the-ceramic-network/
+
+
+#install @ceramicnetwork/cli
+npm i --verbose -g @ceramicnetwork/cli
+
+
+
+
+
+#install @glazed/cli
+npm i --verbose -g @glazed/cli
+
+
+
+
+
+#chek ceramic and glaze path
+
+ls /root/.npm-global/bin
+
+
+#output: 
+ceramic  glaze  idx  ipfs-daemon  jshint  node-gyp  node-pre-gyp  npm  npx
+
+
+
+
+
+
+#chek ceramic and glaze path, again
+
+
+ls /root/.npm-global/lib/node_modules
+
+#output: 
+@ceramicnetwork  @ceramicstudio  @glazed  jshint  node-build-tools  node-gyp  node-pre-gyp  npm
+
+
+
+
+
+
+
+#new example: launch local ceramic node.
+#Basically now we use the [ceramic daemon] command to start a local JS Ceramic node.
+#This local node comunicate with the Clay Testnet.
+#Your ceramic app comunicate with this node at https://localhost:7007.
+
+
+
+ 
+#call daemon option1
+#call daemon with full path
+/root/.npm-global/lib/node_modules/@ceramicnetwork/cli/bin/ceramic.js daemon
+
+#output4324:
+[2022-08-10T03:34:28.473Z] IMPORTANT: Starting Ceramic Daemon at version 2.4.0 with config: 
+{
+  "anchor": {},
+  "http-api": {
+    "cors-allowed-origins": [
+      ".*"
+    ]
+  },
+  "ipfs": {
+    "mode": "bundled"
+  },
+  "logger": {
+    "log-level": 2,
+    "log-to-files": false
+  },
+  "metrics": {
+    "metrics-exporter-enabled": false,
+    "metrics-port": 9090
+  },
+  "network": {
+    "name": "testnet-clay"
+  },
+  "node": {},
+  "state-store": {
+    "mode": "fs",
+    "local-directory": "/root/.ceramic/statestore/"
+  },
+  "indexing": {
+    "db": "sqlite:///root/.ceramic/indexing.sqlite",
+    "models": []
+  }
+}
+[2022-08-10T03:34:28.537Z] IMPORTANT: Connecting to ceramic network 'testnet-clay' using pubsub topic '/ceramic/testnet-clay'
+
+
+[2022-08-10T03:35:00.420Z] WARNING: Can not connect to /dns4/go-ipfs-ceramic-private-clay-external.3boxlabs.com/tcp/4011/ws/p2p/QmQotCKxiMWt935TyCBFTN23jaivxwrZ3uD58wNxeg5npi
+[2022-08-10T03:35:00.420Z] WARNING: TimeoutError: connect QmQotCKxiMWt935TyCBFTN23jaivxwrZ3uD58wNxeg5npi failure: failed to dial QmQotCKxiMWt935TyCBFTN23jaivxwrZ3uD58wNxeg5npi:
+  * [/ip4/3.140.16.98/tcp/4011/ws] failed to negotiate stream multiplexer: context deadline exceeded
+  * [/ip4/52.15.229.17/tcp/4011/ws] failed to negotiate security protocol: context deadline exceeded
+
+
+etc etc etc
+
+
+
+
+#shutdown down daemon
+ctrl d 
+
+
+
+
+
+
+
+
+
+
+#call daemon option2
+#export path and call daemon with short path
+export PATH=~/.npm-global/bin:$PATH
+ceramic daemon
+
+
+#output
+#same output of the example: call daemon with full path.
+#see output4324
+
+
+
+#shutdown daemon
+ctrl d 
+
+
+
+
+
+
+
+
+
+
+#new example: create document
+/root/.npm-global/lib/node_modules/@ceramicnetwork/cli/bin/ceramic.js create tile --content '{ "title": "My first Document" }'
+
+
+#output: 
+
+StreamID(kjzl6cwe1jw1476ll4itjwxginl4oyjha2gpxe2x40govtyfpbrxp350xy5lkhy)
+{
+  "title": "My first Document"
+}
+
+This command has been deprecated.
+
+Please use the upgraded Glaze CLI instead.
+Please test with the new CLI before reporting any problems.
+npm i -g @glazed/cli
+
+
+
+
+
+
+
+
+
+#REMARK. In this tutorial WE CALL THE  daemon with full path
+
+
+
+
+
+
+#new example949: Configure a node URL.
+#Configure a node URL, is an example alternative to [launch local ceramic node]. It is optional.
+#Read the example [launch local ceramic node].
+
+
+#Terminology.
+#This two expression are equivalent.
+#ceramic node URL
+#ceramic remote node 
+
+#Rational.
+#In the example [launch local ceramic node], basically you start a local JS ceramic node.
+#That local node comunicate with the Clay Testnet.
+#Your ceramic app comunicate with that node at https://localhost:7007.
+
+#Insead, in this example949 [configure a node URL], we use the public remote node
+#https://gateway-clay.ceramic.network
+
+#That remote node is a node ot the Clay Testnet network.
+#That remote node comunicate only with the nodes of the Clay Testnet network.
+#Your ceramic app comunicate with that node at https://gateway-clay.ceramic.network
+
+
+
+#There are 3 networks, so there are 3 remote public node to enter in these network.
+#We use only https://gateway-clay.ceramic.network 
+
+#node1=https://gateway.ceramic.network
+#node2=https://gateway-clay.ceramic.network
+#node3=https://ceramic-clay.3boxlabs.com
+
+
+
+#check your glaze configuration
+/root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
+
+
+#output8686
+#output here is not important
+
+Label			│ Key			│ Value         
+Ceramic API URL	│ ceramic-url	│ https://gateway-clay.ceramic.network
+
+
+
+
+
+
+
+#edit your glaze configuration
+#edit ceramic-url 
+/root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
+
+
+#output:
+#Ceramic API URL successfully set
+
+
+#if you use a local ceramic node you should use this command
+#/root/.npm-global/bin/glaze config:set  ceramic-url http://localhost:7007
+#in this example949, you can ignore it. 
+
+ 
+
+#These commands can be useful for several purpose. 
+/root/.npm-global/bin/glaze config:get ceramic-url 
+/root/.npm-global/bin/glaze config:reset ceramic-url 'https://gateway-clay.ceramic.network'
+/root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
+/root/.npm-global/bin/glaze config:show 
+
+
+
+
+
+
+
+#Disambiguation
+#Here we are using glaze, so we use this command 
+#/root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
+
+
+#if you wanna use ceramic.js and note glaze, use should use this command
+/root/.npm-global/lib/node_modules/@ceramicnetwork/cli/bin/ceramic.js config set ceramicHost 'https://gateway-clay.ceramic.network'
+
+#output
+Ceramic CLI configuration ceramicHost set to https://gateway-clay.ceramic.network
+{"ceramicHost":"https://gateway-clay.ceramic.network","seed":"b140df4c3d4bc56daa8d1812c2fe9f597c4f28ad5ff8c9580f89f5ae1bf1dd0f"}
+
+This command has been deprecated.
+Please use the upgraded Glaze CLI instead.
+Please test with the new CLI before reporting any problems.
+npm i -g @glazed/cli
+
+
+
+
+
+
+
+
+
+
+
+#new example5858. create did with the glaze suite
+/root/.npm-global/bin/glaze did:create
+
+#output:
+#Created DID did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc with seed 504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af
+
+
+#remark about the seed.
+#we use the seed with this syntax. See the example7676, example7344.
+seed='504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af'
+glaze [command] --key=$seed
+DID_KEY=$seed glaze [command]
+
+
+
+
+
+
+#new example7676. create document
+seed='504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af'
+#seed='1bfdb6a9e73d800cb44edd3fb5eadbdbd57f909ff1866a17ff356301f1f0fa87'
+#seed='b6db92a8cca631690c9f57adceb9a5123a6ac73a871c49e05f954294af63bd1f'
+#seed='255a19634b3671d6dbc3424d445a3b1a2d4f121f3ad68b337d7d1ed1f742fd5d'
+/root/.npm-global/bin/glaze tile:create --key "$seed" --content '{"Foo332":"Bar563"}'
+
+#output:
+#Using DID did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc
+#Created stream kjzl6cwe1jw1479bjtjzmbvmscjuk2n0y9u3u0k9smxmlfq7v3wnb0uc29kw3tb.
+#{
+#  streamID: 'kjzl6cwe1jw1479bjtjzmbvmscjuk2n0y9u3u0k9smxmlfq7v3wnb0uc29kw3tb',
+#  content: { Foo332: 'Bar563' }
+#}
+
+
+
+
+
+
+#new example7344. create document, again
+
+seed='504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af'
+
+DID_KEY=$seed  /root/.npm-global/bin/glaze tile:create --key "$seed" --content '{"Foo12":"Bar232"}'
+
+#Using DID did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc
+#Created stream kjzl6cwe1jw146duflv8s76pkq9g3sr4rsl2yq1re9bgtdausjxccryf3k261x4.
+#{
+#  streamID: 'kjzl6cwe1jw146duflv8s76pkq9g3sr4rsl2yq1re9bgtdausjxccryf3k261x4',
+#  content: { Foo12: 'Bar232' }
+#}
+
+
+
+#new example5454. query stream.
+streamID='kjzl6cwe1jw1479bjtjzmbvmscjuk2n0y9u3u0k9smxmlfq7v3wnb0uc29kw3tb'
+/root/.npm-global/bin/glaze tile:show "$streamID"
+
+
+
+
+#new example5333. edit stream
+seed='504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af'
+streamID='kjzl6cwe1jw1479bjtjzmbvmscjuk2n0y9u3u0k9smxmlfq7v3wnb0uc29kw3tb'
+
+/root/.npm-global/bin/glaze tile:update "$streamID" --key "$seed" --content '{"Foo":"Baz"}'
+
+
+
+
+
+
+#new example5333. create document using a schema
+
+seed='504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af'
+
+/root/.npm-global/bin/glaze tile:create --key "$seed"  --content '{
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "title": "Reward",
+   "type": "object",
+   "properties": {
+     "title": {"type": "string"},
+     "message": {"type": "string"}
+   },
+   "required": [
+     "message",
+     "title"
+   ]
+ }'
+
+
+
+
+
+#output:
+#Using DID did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc
+#Created stream kjzl6cwe1jw148pi8behvw771nip3d8aherea1b4kxpbv0wuzdzrioymgzny4ff.
+#{
+#  streamID: 'kjzl6cwe1jw148pi8behvw771nip3d8aherea1b4kxpbv0wuzdzrioymgzny4ff',
+#  content: {
+#    type: 'object',
+#    title: 'Reward',
+#    '$schema': 'http://json-schema.org/draft-07/schema#',
+#    required: [ 'message', 'title' ],
+#    properties: { title: { type: 'string' }, message: { type: 'string' } }
+#  }
+#}
+
+
+
+
+
+
+
+
+#new example6464. list the commitIDs contained in the schema stream
+streamID='kjzl6cwe1jw148pi8behvw771nip3d8aherea1b4kxpbv0wuzdzrioymgzny4ff'
+/root/.npm-global/bin/glaze stream:commits "$streamID"
+
+
+
+#output:
+#Stream commits loaded.
+#[
+#  'k3y52l7qbv1fry5xdn5336sz63r8yfy2yjsytjdb4kvo4cmhobniboxi7stmanhmo',
+#  'k6zn3rc3v8qin1ctd4fkpijuyqyrmlw2qdojqerbc159tlwad9cfp34crojamcnrg1rmv7goapbpotv1wln8rcfhyeg13sm0kx34dtfl4u66par70dpo29h'
+#]
+
+
+
+
+
+
+#new example65345. query stream
+#use the tile:show command to show the content of the stream at the given commit.
+
+commitID='k3y52l7qbv1fry5xdn5336sz63r8yfy2yjsytjdb4kvo4cmhobniboxi7stmanhmo'
+/root/.npm-global/bin/glaze tile:show "$commitID"
+
+
+
+
+#new example65443. query stream again
+commitID='k6zn3rc3v8qin1ctd4fkpijuyqyrmlw2qdojqerbc159tlwad9cfp34crojamcnrg1rmv7goapbpotv1wln8rcfhyeg13sm0kx34dtfl4u66par70dpo29h'
+/root/.npm-global/bin/glaze tile:show "$commitID"
+
+
+
+
+
+#new example65453. add document using a schema
+#in this example65453 we run two commands.
+streamID='kjzl6cwe1jw148pi8behvw771nip3d8aherea1b4kxpbv0wuzdzrioymgzny4ff'
+commitID='"k3y52l7qbv1fry5xdn5336sz63r8yfy2yjsytjdb4kvo4cmhobniboxi7stmanhmo"'
+seed='504a3902a726eb6a6505c79f89ae0eca9eff1e6ea3e4c56803f58cd1e329d7af'
+
+shcema_and_commit_id={"schema":"k3y52l7qbv1fry5xdn5336sz63r8yfy2yjsytjdb4kvo4cmhobniboxi7stmanhmo"}
+echo "$shcema_and_commit_id" 
+
+/root/.npm-global/bin/glaze tile:create --key "$seed" --content '{ "title": "My first document with schema", "message": "Hello World"}' --metadata '{"schema":"k3y52l7qbv1fry5xdn5336sz63r8yfy2yjsytjdb4kvo4cmhobniboxi7stmanhmo"}'
+
+
+
+
+
+#output:
+
+#Using DID did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc
+#Created stream kjzl6cwe1jw14bdy68qo0ao7u12ildxfvnkbgnr3rxap8qpzhpwcod1znuk33zq.
+#{
+#  streamID: 'kjzl6cwe1jw14bdy68qo0ao7u12ildxfvnkbgnr3rxap8qpzhpwcod1znuk33zq',
+#  content: { title: 'My first document with schema', message: 'Hello World' }
+#}
+
+
+
+
+
+
+
+
+/root/.npm-global/bin/glaze tile:create --key "$seed" --content '{ "title": "My SECOND document with schema", "message": "Hello World 2"}' --metadata '{"schema":'"$commitID"'}'
+
+
+#output
+#Using DID did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc
+#Created stream kjzl6cwe1jw148xo16cd3hsw0ir15njlnd65j1ayo6h36diquy891zkphe51byn.
+#{
+#  streamID: 'kjzl6cwe1jw148xo16cd3hsw0ir15njlnd65j1ayo6h36diquy891zkphe51byn',
+#  content: { title: 'My SECOND document with schema', message: 'Hello World 2' }
+#}
+
+
+
+
+
+#new example6345345. query stream again
+streamID='kjzl6cwe1jw148pi8behvw771nip3d8aherea1b4kxpbv0wuzdzrioymgzny4ff'
+/root/.npm-global/bin/glaze stream:state "$streamID"
+
+
+
+
+#output
+#Successfully queried stream kjzl6cwe1jw148pi8behvw771nip3d8aherea1b4kxpbv0wuzdzrioymgzny4ff
+#{
+#  type: 0,
+#  content: {
+#    type: 'object',
+#    title: 'Reward',
+#    '$schema': 'http://json-schema.org/draft-07/schema#',
+#    required: [ 'message', 'title' ],
+#    properties: { title: { type: 'string' }, message: { type: 'string' } }
+#  },
+#  metadata: {
+#    unique: 'yhVZOuUzZ6Ky/JET',
+#    controllers: [ 'did:key:z6MkrnMAnSYngHn22KE1sqePNonNfpDtfzrEeja32L2n5mVc' ]
+#  },
+#  signature: 2,
+#  anchorStatus: 3,
+#  log: [
+#    {
+#      cid: CID(bagcqcerarhdyddbb5j4dzdpsarnznpouk7byjszzf6r5znx3axvy7cdwvxvq),
+#      type: 0
+#    },
+#    {
+#      cid: CID(bafyreigdeilvfiqjec2ttv66m7zowpvvf5z3cg3ww6vw7apa66uynuxoou),
+#      type: 2,
+#      timestamp: 1659232668
+#    }
+#  ],
+#  anchorProof: {
+#    root: CID(bagcqcerarhdyddbb5j4dzdpsarnznpouk7byjszzf6r5znx3axvy7cdwvxvq),
+#    txHash: CID(bagjqcgzaoo5vu3xgqxberczsvgmsseujz5da6rmhnpsi4bu5cmmmboaij3ua),
+#    chainId: 'eip155:3',
+#    blockNumber: 12696395,
+#    blockTimestamp: 1659232668
+#  }
+#}
+
+
+
+
+#new example6345345. create DataModel
+#Creating a local DataModel using the CLI simply requires to run the model:create command with a name to identify the model:
+/root/.npm-global/bin/glaze model:create simple-note
+
+
+#output:
+#Model simple-note successfully created
+
+
+#new example63555. create did, again
+/root/.npm-global/bin/glaze did:create
+
+#output:
+#Created DID did:key:z6Mkozvr59bFyXVxJ1ZvF4G9mvBX5x92HcYTCMjikNxnaEN7 with seed 6a6cfe1f2143c929d8a5cfd70f623a246127ddfc9ee897c756b9b82989d307b8
+
+
+
+#new example634545. create DataModel
+
+/root/.npm-global/bin/glaze model:add simple-note schema SimpleNote '{"$schema":"http://json-schema.org/draft-07/schema#","title":"SimpleNote","type":"object","properties":{"text":{"type":"string","title":"text","maxLength":4000}}}' --key=6a6cfe1f2143c929d8a5cfd70f623a246127ddfc9ee897c756b9b82989d307b8
+
+
+#output:
+#Using DID did:key:z6Mkozvr59bFyXVxJ1ZvF4G9mvBX5x92HcYTCMjikNxnaEN7
+#Model successfully updated
+
+
+#new example693939. get schemaid
+/root/.npm-global/bin/glaze model:inspect simple-note
+
+
+#output:
+# Loaded model simple-note
+model
+├─ schemas
+│  └─ kjzl6cwe1jw146m47m2yfe7srk1htyd7uydnn0ehzrckf7ddxjuwcpe2eqjp0z3
+│     ├─ alias: SimpleNote
+│     ├─ version: k3y52l7qbv1frxr19y510th3gjyimt0dzw4h43mv3yahd84f72l7q2ck14ss1yxhc
+│     └─ dependencies
+├─ definitions
+└─ tiles
+
+
+
+
+
+#new example55739. edit model
+/root/.npm-global/bin/glaze model:add simple-note definition myNote '{"name":"My note","description":"A simple text note","schema":"ceramic://k3y52l7qbv1frxr19y510th3gjyimt0dzw4h43mv3yahd84f72l7q2ck14ss1yxhc"}' --key=6a6cfe1f2143c929d8a5cfd70f623a246127ddfc9ee897c756b9b82989d307b8
+
+#output:
+#Using DID did:key:z6Mkozvr59bFyXVxJ1ZvF4G9mvBX5x92HcYTCMjikNxnaEN7
+#Model successfully updated
+
+
+
+
+
+
+
+
+
+
+#create did
+/root/.npm-global/bin/glaze did:create
+✔ Created DID did:key:z6Mkmbd8duALzSHD8s87Rr14uopKC9fo5rv7amYNLiNbdUQL with seed 268c5535c097b36f2c1f02cb4a60674acfa73a25c13ca3ef70638905b4b14157
+
+
+
+
+
+
+#useful links:
+https://developers.ceramic.network/build/cli/quick-start/#__tabbed_7_1
+https://developers.ceramic.network/tools/glaze/example/
+https://blog.ceramic.network/getting-started-with-ceramic/#things-we-need-to-talk-about
+https://blog.ceramic.network/orbis-launches-web3-social-protocol-on-ceramic-mainnet-and-opens-sdk-to-developers/
+https://orbis.club/developers
+https://mega.nz/file/opVRSapS#eVmvwgu_AavZImyWqrBft8-UYGOwCerQaOfDXkjVTmk
+
+#endfile

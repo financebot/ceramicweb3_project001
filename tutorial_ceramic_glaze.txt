@@ -145,7 +145,6 @@ ctrl d
 #For us this is not a problem.
 #We can use a remote node, see the example example949.
 #Actually in this tutorial we dont use too much the local node, but the remote node.
-#Just sometimes we use the local node, and we call the ceramic daemon with the full path.
 
 
 
@@ -174,7 +173,9 @@ ctrl d
 
 
 
-
+#Observsation.
+#As you can see we can use the full path or the short path to call ceramic.js, glaze, etc.
+#Usually we use the full path.
 
 
 

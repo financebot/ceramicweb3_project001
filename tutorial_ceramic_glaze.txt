@@ -7,7 +7,7 @@ Rationale. This tutorial about ceramic and glaze are a list of examples.
 
 
 #introduction.
-#This commands was testend inside docker ubuntu, with a bash shell.
+#This commands was tested inside docker ubuntu, with a bash shell.
 
 
 new example4243. get npm paths

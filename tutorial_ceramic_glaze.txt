@@ -29,7 +29,7 @@ npm config get prefix
 
 
 
-new example74747: install globally @ceramicnetwork/cli , and run ceramic daemon
+new example74747: install globally @ceramicnetwork/cli , and @glaze/cli
 tags: #global #ceramicglobal #ceramicdaemon
 see too: https://blog.ceramic.network/building-with-clay-getting-started-with-the-ceramic-network/
 
@@ -54,7 +54,7 @@ ls /root/.npm-global/bin
 
 
 #output: 
-ceramic  glaze  idx  ipfs-daemon  jshint  node-gyp  node-pre-gyp  npm  npx
+#ceramic  glaze  idx  ipfs-daemon  jshint  node-gyp  node-pre-gyp  npm  npx
 
 
 
@@ -67,7 +67,7 @@ ceramic  glaze  idx  ipfs-daemon  jshint  node-gyp  node-pre-gyp  npm  npx
 ls /root/.npm-global/lib/node_modules
 
 #output: 
-@ceramicnetwork  @ceramicstudio  @glazed  jshint  node-build-tools  node-gyp  node-pre-gyp  npm
+#@ceramicnetwork  @ceramicstudio  @glazed  jshint  node-build-tools  node-gyp  node-pre-gyp  npm
 
 
 
@@ -134,7 +134,7 @@ etc etc etc
 
 
 
-#shutdown down daemon
+#shutdown  daemon
 ctrl d 
 
 
@@ -214,19 +214,19 @@ ctrl d
 
 
 #Terminology.
-#This two expression are equivalent.
+#This two expressions are equivalent.
 #ceramic node URL
 #ceramic remote node 
 
-#Rational.
-#In the example [launch local ceramic node], basically you start a local JS ceramic node.
+#Rationale.
+#In the example42998 [launch local ceramic node], basically you start a local JS ceramic node.
 #That local node comunicate with the Clay Testnet.
 #Your ceramic app comunicate with that node at https://localhost:7007.
 
-#Insead, in this example949 [configure a node URL], we use the public remote node
+#Instead, in this example949 [configure a node URL], we use the public remote node
 #https://gateway-clay.ceramic.network
 
-#That remote node is a node ot the Clay Testnet network.
+#That remote node is a node of the Clay Testnet network.
 #That remote node comunicate only with the nodes of the Clay Testnet network.
 #Your ceramic app comunicate with that node at https://gateway-clay.ceramic.network
 
@@ -242,7 +242,7 @@ ctrl d
 
 
 #check your glaze configuration
-/root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
+/root/.npm-global/bin/glaze config:show
 
 
 #output8686
@@ -266,13 +266,16 @@ Ceramic API URL	│ ceramic-url	│ https://gateway-clay.ceramic.network
 #Ceramic API URL successfully set
 
 
-#if you use a local ceramic node you should use this command
+#If you use a local ceramic node, you should use this command
 #/root/.npm-global/bin/glaze config:set  ceramic-url http://localhost:7007
-#in this example949, you can ignore it. 
+#See the example42998 for more information about local ceramic node . 
 
+#In this example949, you can ignore it. 
+#In this example we are using a remote ceramic node
  
 
-#These commands can be useful for several purpose. 
+
+#These commands can be useful for several purposes. 
 /root/.npm-global/bin/glaze config:get ceramic-url 
 /root/.npm-global/bin/glaze config:reset ceramic-url 'https://gateway-clay.ceramic.network'
 /root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
@@ -284,13 +287,14 @@ Ceramic API URL	│ ceramic-url	│ https://gateway-clay.ceramic.network
 
 
 
-#Disambiguation
-#Here we are using glaze, so we use this command 
+#Disambiguation glaze vs ceramic.js.
+#In this example949 we are using glaze, so we use this command 
 #/root/.npm-global/bin/glaze config:set  ceramic-url https://gateway-clay.ceramic.network
 
 
-#if you wanna use ceramic.js and note glaze, use should use this command
+#If you wanna use ceramic.js and not glaze, you should use this command
 /root/.npm-global/lib/node_modules/@ceramicnetwork/cli/bin/ceramic.js config set ceramicHost 'https://gateway-clay.ceramic.network'
+
 
 #output
 Ceramic CLI configuration ceramicHost set to https://gateway-clay.ceramic.network

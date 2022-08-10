@@ -30,8 +30,6 @@ npm config get prefix
 
 
 new example74747: install globally @ceramicnetwork/cli , and @glaze/cli
-tags: #global #ceramicglobal #ceramicdaemon
-see too: https://blog.ceramic.network/building-with-clay-getting-started-with-the-ceramic-network/
 
 
 #install @ceramicnetwork/cli
@@ -635,5 +633,5 @@ https://blog.ceramic.network/getting-started-with-ceramic/#things-we-need-to-tal
 https://blog.ceramic.network/orbis-launches-web3-social-protocol-on-ceramic-mainnet-and-opens-sdk-to-developers/
 https://orbis.club/developers
 https://github.com/financebot/ceramicweb3_project001/blob/main/tutorial_ceramic_glaze.txt
-
+https://blog.ceramic.network/building-with-clay-getting-started-with-the-ceramic-network/
 #endfile

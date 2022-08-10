@@ -1,5 +1,5 @@
 #startfile
-#ceramictutorial1
+#tutorial_ceramic_glaze
 
 Last update 20220810. 
 Rationale. This tutorial about ceramic and glaze are a list of examples.

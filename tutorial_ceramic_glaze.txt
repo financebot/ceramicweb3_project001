@@ -630,6 +630,6 @@ https://developers.ceramic.network/tools/glaze/example/
 https://blog.ceramic.network/getting-started-with-ceramic/#things-we-need-to-talk-about
 https://blog.ceramic.network/orbis-launches-web3-social-protocol-on-ceramic-mainnet-and-opens-sdk-to-developers/
 https://orbis.club/developers
-https://mega.nz/file/opVRSapS#eVmvwgu_AavZImyWqrBft8-UYGOwCerQaOfDXkjVTmk
+https://github.com/financebot/ceramicweb3_project001/blob/main/tutorial_ceramic_glaze.txt
 
 #endfile

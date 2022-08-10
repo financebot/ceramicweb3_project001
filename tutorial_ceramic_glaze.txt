@@ -7,10 +7,10 @@ Rationale. This tutorial about ceramic and glaze are a list of examples.
 
 
 #introduction.
-#This commands was testend inside doker ubuntu, with a bash shell.
+#This commands was testend inside docker ubuntu, with a bash shell.
 
 
-new example. get npm paths
+new example4243. get npm paths
 #can be useful to know these paths.
 
 which npm 
@@ -29,7 +29,7 @@ npm config get prefix
 
 
 
-new example: install globally @ceramicnetwork/cli , and run ceramic daemon
+new example74747: install globally @ceramicnetwork/cli , and run ceramic daemon
 tags: #global #ceramicglobal #ceramicdaemon
 see too: https://blog.ceramic.network/building-with-clay-getting-started-with-the-ceramic-network/
 
@@ -48,7 +48,7 @@ npm i --verbose -g @glazed/cli
 
 
 
-#chek ceramic and glaze path
+#check ceramic and glaze path
 
 ls /root/.npm-global/bin
 
@@ -61,7 +61,7 @@ ceramic  glaze  idx  ipfs-daemon  jshint  node-gyp  node-pre-gyp  npm  npx
 
 
 
-#chek ceramic and glaze path, again
+#check ceramic and glaze path, again
 
 
 ls /root/.npm-global/lib/node_modules
@@ -75,7 +75,7 @@ ls /root/.npm-global/lib/node_modules
 
 
 
-#new example: launch local ceramic node.
+#new example42998: launch local ceramic node.
 #Basically now we use the [ceramic daemon] command to start a local JS Ceramic node.
 #This local node comunicate with the Clay Testnet.
 #Your ceramic app comunicate with this node at https://localhost:7007.
@@ -141,6 +141,11 @@ ctrl d
 
 
 
+#observation.
+#In this case was not possible run a local node.
+#Sometimes this happen.
+#For us this is not a problem.
+#We can use a remote node, see the example example949.
 
 
 
@@ -170,32 +175,33 @@ ctrl d
 
 
 
-#new example: create document
+#new example4244: create document
 /root/.npm-global/lib/node_modules/@ceramicnetwork/cli/bin/ceramic.js create tile --content '{ "title": "My first Document" }'
 
 
 #output: 
 
-StreamID(kjzl6cwe1jw1476ll4itjwxginl4oyjha2gpxe2x40govtyfpbrxp350xy5lkhy)
-{
-  "title": "My first Document"
-}
+#StreamID(kjzl6cwe1jw1476ll4itjwxginl4oyjha2gpxe2x40govtyfpbrxp350xy5lkhy)
+#{
+#  "title": "My first Document"
+#}
 
-This command has been deprecated.
+#This command has been deprecated.
 
-Please use the upgraded Glaze CLI instead.
-Please test with the new CLI before reporting any problems.
-npm i -g @glazed/cli
-
-
+#Please use the upgraded Glaze CLI instead.
+#Please test with the new CLI before reporting any problems.
+#npm i -g @glazed/cli
 
 
 
 
 
 
+#Remark.
+#In this tutorial we dont use too much the local node, but the remote node.
+#see the example example949
 
-#REMARK. In this tutorial WE CALL THE  daemon with full path
+#Just sometimes we use the local node, and we call the ceramic daemon with the full path
 
 
 

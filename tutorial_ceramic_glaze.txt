@@ -139,11 +139,17 @@ ctrl d
 
 
 
-#observation.
+#Observation.
 #In this case was not possible run a local node.
 #Sometimes this happen.
 #For us this is not a problem.
 #We can use a remote node, see the example example949.
+#Actually in this tutorial we dont use too much the local node, but the remote node.
+#Just sometimes we use the local node, and we call the ceramic daemon with the full path.
+
+
+
+
 
 
 
@@ -194,12 +200,6 @@ ctrl d
 
 
 
-
-#Remark.
-#In this tutorial we dont use too much the local node, but the remote node.
-#see the example example949
-
-#Just sometimes we use the local node, and we call the ceramic daemon with the full path
 
 
 
